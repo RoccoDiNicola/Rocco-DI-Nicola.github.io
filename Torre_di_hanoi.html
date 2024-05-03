@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Torre di Hanoi</title>
+    <link rel="icon" type="image/png" href="favicon.png"> <!-- Favicon -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="mystyle.css"> <!-- Tuo CSS personalizzato -->
+    <style>
+        body {
+            background-color: #343a40; /* Grigio scuro per il corpo della pagina */
+            font-family: Arial, sans-serif; /* Font principale */
+            color: #fff; /* Colore del testo */
+        }
+
+        header {
+            background-color: #343a40; /* Colore sfondo dell'intestazione */
+            color: #fff; /* Colore del testo */
+            padding: 10px 0;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            background-color: #343a40; /* Colore sfondo del piè di pagina */
+            color: #fff; /* Colore del testo */
+            padding: 10px 0;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .disk {
+            height: 30px;
+            border-radius: 50px;
+        }
+
+        .pole {
+            background-color: #495057; /* Grigio leggermente più chiaro per le torri */
+            border-radius: 10px;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        .btn-primary {
+            background-color: #007bff; /* Blu per i pulsanti */
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3; /* Blu più scuro per i pulsanti al passaggio del mouse */
+            border-color: #0056b3;
+        }
+
+        /* Aggiunta stili per centrare i bottoni */
+        .button-container {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Intestazione -->
+        <h1 style="background-color: #343a40; display: inline; padding: 10px;">La Torre di Hanoi</h1>
+        
+    </header>
+    <main>
+        <!-- Corpo -->
+        <div class="container">
+            <div class="row">
+                <div id="pole1" class="col-4 pole"></div>
+                <div id="pole2" class="col-4 pole"></div>
+                <div id="pole3" class="col-4 pole"></div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-4">
+                    <div class="button-container"> <!-- Aggiunta classe button-container -->
+                        <button id="btn1" class="btn btn-primary btn-block" onclick="actionPole(1)">Prendi/Togli</button>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="button-container"> <!-- Aggiunta classe button-container -->
+                        <button id="btn2" class="btn btn-primary btn-block" onclick="actionPole(2)">Prendi/Togli</button>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="button-container"> <!-- Aggiunta classe button-container -->
+                        <button id="btn3" class="btn btn-primary btn-block" onclick="actionPole(3)">Prendi/Togli</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div id="myHand" class="text-center"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer style="margin-top: 20px;">
+        <!-- Pedice -->
+        <div class="button-container"> <!-- Aggiunta classe button-container -->
+            <button id="btnRestart" class="btn btn-primary" onclick="restart()">Restart</button>
+        </div>
+        <p><span id="movesCount">Mosse: 0</span></p>
+        <p><span id="timer"></span></p>
+        <p>&copy; Di Nicola Rocco 4°N</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> <!-- Bootstrap JavaScript -->
+    <script>
+        var pole1 = [1, 2, 3, 4];
+        var pole2 = [];
+        var pole3 = [];
+        var mano = 0;
+        var movesCount = 0;
+        var startTime;
+        var timerInterval;
+
+        drawScene();
+
+        function drawScene() {
+            drawPoles();
+            drawHand();
+            checkButtons();
+        }
+
+        function drawPoles() {
+            for (let i = 1; i < 4; i++) {
+                drawPole(getPole(i), getDivPole(i));
+            }
+        }
+
+        function getDivPole(n) {
+            return document.getElementById("pole" + n);
+        }
+
+        function drawPole(pole, div) {
+            div.innerHTML = "";
+            for (let i = 0; i < pole.length; i++) {
+                div.innerHTML += drawDisk(pole[i]);
+            }
+        }
+
+        function checkButtons() {
+            for (let i = 1; i < 4; i++)
+                checkButton(i);
+        }
+
+        function getPole(n) {
+            switch (n) {
+                case 1: return pole1;
+                case 2: return pole2;
+                case 3: return pole3;
+            }
+        }
+
+        function checkButton(n) {
+            let button = document.getElementById("btn" + n);
+            let pole = getPole(n);
+            if (mano == 0) {
+                button.innerText = "Prendi";
+                button.disabled = pole.length == 0;
+            } else {
+                button.innerText = "Metti";
+                button.disabled = pole.length > 0 ? pole[0] < mano : false;
+            }
+        }
+
+        function drawHand() {
+            let handDiv = document.getElementById("myHand");
+            handDiv.innerHTML = drawDisk(mano);
+        }
+
+        function actionPole(n) {
+            if (!timerInterval) {
+                startTimer();
+            }
+            if (mano == 0) {
+                mano = getPole(n).shift();
+                movesCount++; // Incrementa il contatore di mosse solo quando si prende un disco
+            } else {
+                getPole(n).unshift(mano);
+                mano = 0;
+            }
+            document.getElementById("movesCount").innerText = "Mosse: " + movesCount; // Aggiorna il conteggio di mosse
+            drawScene();
+        }
+
+        function getColor(dimension) {
+            let color = "#FF0000";
+            switch (dimension) {
+                case 1:
+                    color = "#000000"; break;
+                case 2:
+                    color = "#0000FF"; break;
+                case 3:
+                    color = "#00FF00"; break;
+            }
+            return color;
+        }
+
+        function drawDisk(dimension) {
+            let color = getColor(dimension);
+            return '<div class="disk mx-auto mb-1" style="background-color:' + color + '; width:' + (dimension * 10) + '%;"></div>';
+        }
+
+        function startTimer() {
+            startTime = new Date().getTime();
+            timerInterval = setInterval(updateTimer, 1000); // Aggiorna il timer ogni secondo
+        }
+
+        function updateTimer() {
+            var currentTime = new Date().getTime();
+            var elapsedTime = Math.floor((currentTime - startTime) / 1000); // Tempo trascorso in secondi
+            document.getElementById("timer").innerText = "Tempo trascorso: " + elapsedTime + " secondi";
+        }
+
+        function restart() {
+            clearInterval(timerInterval); // Interrompe il timer quando si riavvia il gioco
+            movesCount = 0;
+            document.getElementById("movesCount").innerText = "Mosse: " + movesCount;
+            pole1 = [1, 2, 3, 4];
+            pole2 = [];
+            pole3 = [];
+            mano = 0;
+            drawScene();
+        }
+    </script>
+</body>
+</html>
