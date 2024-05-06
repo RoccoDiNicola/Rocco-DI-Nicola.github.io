@@ -1,30 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Tower of Hanoi</title>
+    <title>La Torre di Hanoi</title>
     <link rel="icon" type="image/png" href="favicon.png"> <!-- Favicon -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="mystyle.css"> <!-- Your Custom CSS -->
+    <link rel="stylesheet" href="mystyle.css"> <!-- Tuo CSS personalizzato -->
     <style>
         body {
-            background-color: #343a40; /* Dark gray for the page body */
-            font-family: Arial, sans-serif; /* Main font */
-            color: #fff; /* Text color */
+            background-color: #343a40; /* Grigio scuro per il corpo della pagina */
+            font-family: Arial, sans-serif; /* Font principale */
+            color: #fff; /* Colore del testo */
         }
 
         header {
-            background-color: #343a40; /* Header background color */
-            color: #fff; /* Text color */
+            background-color: #343a40; /* Colore sfondo dell'intestazione */
+            color: #fff; /* Colore del testo */
             padding: 10px 0;
             text-align: center;
             margin-bottom: 20px;
         }
 
         footer {
-            background-color: #343a40; /* Footer background color */
-            color: #fff; /* Text color */
+            background-color: #343a40; /* Colore sfondo del piè di pagina */
+            color: #fff; /* Colore del testo */
             padding: 10px 0;
             text-align: center;
             margin-top: 20px;
@@ -36,23 +36,23 @@
         }
 
         .pole {
-            background-color: #495057; /* Slightly lighter gray for the poles */
+            background-color: #495057; /* Grigio leggermente più chiaro per le torri */
             border-radius: 10px;
             padding: 10px;
             margin-top: 20px;
         }
 
         .btn-primary {
-            background-color: #007bff; /* Blue for buttons */
+            background-color: #007bff; /* Blu per i pulsanti */
             border-color: #007bff;
         }
 
         .btn-primary:hover {
-            background-color: #0056b3; /* Darker blue for buttons on hover */
+            background-color: #0056b3; /* Blu più scuro per i pulsanti al passaggio del mouse */
             border-color: #0056b3;
         }
 
-        /* Additional styles for centering buttons */
+        /* Aggiunta stili per centrare i bottoni */
         .button-container {
             display: flex;
             justify-content: center;
@@ -61,12 +61,12 @@
 </head>
 <body>
     <header>
-        <!-- Header -->
-        <h1 style="background-color: #343a40; display: inline; padding: 10px;">The Tower of Hanoi</h1>
+        <!-- Intestazione -->
+        <h1 style="background-color: #343a40; display: inline; padding: 10px;">La Torre di Hanoi</h1>
         
     </header>
     <main>
-        <!-- Main Content -->
+        <!-- Corpo -->
         <div class="container">
             <div class="row">
                 <div id="pole1" class="col-4 pole"></div>
@@ -75,18 +75,18 @@
             </div>
             <div class="row mt-4">
                 <div class="col-4">
-                    <div class="button-container"> <!-- Added button-container class -->
-                        <button id="btn1" class="btn btn-primary btn-block" onclick="actionPole(1)">Take/Put</button>
+                    <div class="button-container"> <!-- Aggiunta classe button-container -->
+                        <button id="btn1" class="btn btn-primary btn-block" onclick="actionPole(1)">Prendi/Togli</button>
                     </div>
                 </div>
                 <div class="col-4">
-                    <div class="button-container"> <!-- Added button-container class -->
-                        <button id="btn2" class="btn btn-primary btn-block" onclick="actionPole(2)">Take/Put</button>
+                    <div class="button-container"> <!-- Aggiunta classe button-container -->
+                        <button id="btn2" class="btn btn-primary btn-block" onclick="actionPole(2)">Prendi/Togli</button>
                     </div>
                 </div>
                 <div class="col-4">
-                    <div class="button-container"> <!-- Added button-container class -->
-                        <button id="btn3" class="btn btn-primary btn-block" onclick="actionPole(3)">Take/Put</button>
+                    <div class="button-container"> <!-- Aggiunta classe button-container -->
+                        <button id="btn3" class="btn btn-primary btn-block" onclick="actionPole(3)">Prendi/Togli</button>
                     </div>
                 </div>
             </div>
@@ -98,11 +98,11 @@
         </div>
     </main>
     <footer style="margin-top: 20px;">
-        <!-- Footer -->
-        <div class="button-container"> <!-- Added button-container class -->
+        <!-- Pedice -->
+        <class="button-container"> <!-- Aggiunta classe button-container -->
             <button id="btnRestart" class="btn btn-primary" onclick="restart()">Restart</button>
         </div>
-        <p><span id="movesCount">Moves: 0</span></p>
+        <p><span id="movesCount">Mosse: 0</span></p>
         <p><span id="timer"></span></p>
         <p>&copy; Di Nicola Rocco 4°N</p>
     </footer>
@@ -111,7 +111,7 @@
         var pole1 = [1, 2, 3, 4];
         var pole2 = [];
         var pole3 = [];
-        var hand = 0;
+        var mano = 0;
         var movesCount = 0;
         var startTime;
         var timerInterval;
@@ -157,32 +157,32 @@
         function checkButton(n) {
             let button = document.getElementById("btn" + n);
             let pole = getPole(n);
-            if (hand == 0) {
-                button.innerText = "Take";
+            if (mano == 0) {
+                button.innerText = "Prendi";
                 button.disabled = pole.length == 0;
             } else {
-                button.innerText = "Put";
-                button.disabled = pole.length > 0 ? pole[0] < hand : false;
+                button.innerText = "Metti";
+                button.disabled = pole.length > 0 ? pole[0] < mano : false;
             }
         }
 
         function drawHand() {
             let handDiv = document.getElementById("myHand");
-            handDiv.innerHTML = drawDisk(hand);
+            handDiv.innerHTML = drawDisk(mano);
         }
 
         function actionPole(n) {
             if (!timerInterval) {
                 startTimer();
             }
-            if (hand == 0) {
-                hand = getPole(n).shift();
-                movesCount++; // Increment moves count only when taking a disk
+            if (mano == 0) {
+                mano = getPole(n).shift();
             } else {
-                getPole(n).unshift(hand);
-                hand = 0;
+                getPole(n).unshift(mano);
+                mano = 0;
             }
-            document.getElementById("movesCount").innerText = "Moves: " + movesCount; // Update moves count
+            movesCount = (movesCount + 1); // Incrementa il contatore di mosse
+            document.getElementById("movesCount").innerText = "Mosse: " + movesCount;
             drawScene();
         }
 
@@ -206,23 +206,23 @@
 
         function startTimer() {
             startTime = new Date().getTime();
-            timerInterval = setInterval(updateTimer, 1000); // Update timer every second
+            timerInterval = setInterval(updateTimer, 1000); // Aggiorna il timer ogni secondo
         }
 
         function updateTimer() {
             var currentTime = new Date().getTime();
-            var elapsedTime = Math.floor((currentTime - startTime) / 1000); // Elapsed time in seconds
-            document.getElementById("timer").innerText = "Time elapsed: " + elapsedTime + " seconds";
+            var elapsedTime = Math.floor((currentTime - startTime) / 1000); // Tempo trascorso in secondi
+            document.getElementById("timer").innerText = "Tempo trascorso: " + elapsedTime + " secondi";
         }
 
         function restart() {
-            clearInterval(timerInterval); // Stop the timer when restarting the game
+            clearInterval(timerInterval); // Interrompe il timer quando si riavvia il gioco
             movesCount = 0;
-            document.getElementById("movesCount").innerText = "Moves: " + movesCount;
+            document.getElementById("movesCount").innerText = "Mosse: " + movesCount;
             pole1 = [1, 2, 3, 4];
             pole2 = [];
             pole3 = [];
-            hand = 0;
+            mano = 0;
             drawScene();
         }
     </script>
