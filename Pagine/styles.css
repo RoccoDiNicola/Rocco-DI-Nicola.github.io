@@ -1,0 +1,11 @@
+.jumbotron {
+    background: url('') no-repeat center center;
+    background-size: cover;
+}
+
+.card-img-top {
+    height: 350px;
+    width: 350px;
+    object-fit: cover;
+}
+
