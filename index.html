@@ -20,7 +20,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
             <a class="navbar-brand js-scroll-trigger" href="#page-top">
                 <span class="d-block d-lg-none">DI Nicola Rocco</span>
-                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/Profilo.jpeg" alt="foto profilo" /></span>
+                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/Profilo.png" alt="foto profilo" /></span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -36,26 +36,31 @@
         </nav>
         <!-- Page Content-->
         <div class="container-fluid p-0">
-            <!-- Chi sono-->
-            <section class="resume-section" id="about">
-                <div class="resume-section-content">
-                    <h1 class="mb-0">
-                        Rocco
-                        <span class="text-primary">Di Nicola</span>
-                    </h1>
-                    <div class="subheading mb-5">
-                        Ruoti 85056 (PZ)  · +39 348 928 3403 ·
-                        <a href="mailto:roccodinicola2006@gmail.com">roccodinicola2006@gmail.com</a>
-                    </div>
-                    <p class="lead mb-5">Studente presso ITIS "EINSTEIN-DE LORENZO"-POTENZA, indirizzo Informatica</p>
-                    <div class="social-icons">
-                        <a class="social-icon" href="https://github.com/"><i class="fab fa-github"></i></a>
-                        <a class="social-icon" href="https://www.instagram.com/_roccodinicola_"><i class="fab fa-instagram"></i></a>
-                        <a class="social-icon" href="https://www.facebook.com/Rocco Di Nicola"><i class="fab fa-facebook-f"></i></a>
-                        <a class="social-icon" href="https://open.spotify.com/user/fgkgoh7oq0f8l35xgd3p1cep3?si=f8103e03d5db47d8"><i class="fab fa-spotify"></i></a>
-                    </div>
+        <!-- Chi sono-->
+        <section class="resume-section" id="about">
+            <div class="resume-section-content">
+                <h1 class="mb-0">
+                    Rocco
+                    <span class="text-primary">Di Nicola</span>
+                </h1>
+                <div class="subheading mb-5">
+                    Ruoti 85056 (PZ)  · +39 348 928 3403 ·
+                    <a href="mailto:roccodinicola2006@gmail.com">roccodinicola2006@gmail.com</a>
                 </div>
-            </section>
+                <p class="lead mb-5">Studente presso ITIS "EINSTEIN-DE LORENZO"-POTENZA, indirizzo Informatica</p>
+                <div class="social-icons">
+                    <a class="social-icon" href="https://github.com/"><i class="fab fa-github"></i></a>
+                    <a class="social-icon" href="https://www.instagram.com/_roccodinicola_"><i class="fab fa-instagram"></i></a>
+                    <a class="social-icon" href="https://www.facebook.com/Rocco Di Nicola"><i class="fab fa-facebook-f"></i></a>
+                    <a class="social-icon" href="https://open.spotify.com/user/fgkgoh7oq0f8l35xgd3p1cep3?si=f8103e03d5db47d8"><i class="fab fa-spotify"></i></a>
+                </div>
+                <!-- Aggiunta del pulsante per il download del curriculum in PDF -->
+                <div style="padding: 3%;">
+                    <a href="CV Rocco Di Nicola.pdf" download="Curriculum_Di_Nicola_Rocco.pdf" class="btn btn-primary btn-lg">Scarica Curriculum</a>
+                </div>
+            </div>
+        </section>
+
             <hr class="m-0" />
             <!-- Esperienze-->
             <section class="resume-section" id="experience">
@@ -140,13 +145,11 @@
             <section class="resume-section" id="interests">
                 <div class="resume-section-content">
                     <h2 class="mb-5">Interessi</h2>
-                    <p class="mb-0">Mi piace il design in generale e creare siti web. Il mio obiettivo è creare esperienze digitali che siano coinvolgenti e belle da vedere, sempre alla ricerca di cose nuove e interessanti nel mondo del design. Mi piace anche la musica e il mio cantante preferito è Marracash.</p>
+                    <p class="mb-0">Mi piace il design in generale e creare siti web. Il mio obiettivo è creare esperienze digitali che siano coinvolgenti e belle da vedere, sempre alla ricerca di cose nuove e interessanti nel mondo del design. I miei hobby includono ascoltare musica, con una preferenza per il rap, la trap e i generi simili. Mi piace anche fare sport e stare all'aria aperta, in particolare pratico il nuoto, e ho un grande interesse per la tecnologia e l'informatica.</p>
                 </div>
             </section>
             <hr class="m-0" />
-            <!-- Progetti
-
--->
+            <!-- Progetti -->
             <section class="resume-section" id="awards">
                 <div class="resume-section-content">
                     <h2 class="mb-5">PROGETTI</h2>
@@ -183,8 +186,26 @@
                             <a href="Pagine/index.html" class="btn btn-primary btn-lg">Visualizza il Sito Web</a>
                         </div>
                     </div>
+                    <div class="project" style="margin-top: 40px;">
+                        <h3 class="project-title">Progetto Creazione di Quiz</h3>
+                        <h4 class="project-title">Realizzazione di un'applicazione Java per la creazione di quiz</h4>
+                        <p class="mb-4">
+                            Manuale d’uso:
+                            <br>
+                            Scrivere le domande nel file csv come nell’esempio:
+                            <br>
+                            domanda?, risposta1, risposta2, risposta3,2 (numero della risposta corretta).
+                            <br><br>
+                            Avviare il programma e rispondere alle domande. Una volta premuto il tasto invia sarà possibile visualizzare il punteggio. Uscito dal programma sarà visibile un file txt con tutte le informazioni dell’utente che ha svolto il quiz, con le domande e lo stato delle domande (giusta o sbagliata), se la domanda è sbagliata affianco ci sarà la risposta giusta.
+                        </p>
+                        <div class="text-center">
+                            <a href="Quiz/Quiz.jar" class="btn btn-primary btn-lg">Download</a>
+                            <p style="padding: 2%;">Per eseguire il quiz, fai clic sul pulsante sopra e segui le istruzioni del tuo sistema operativo per avviare l'applicazione Java.</p>
+                        </div>                        
+                    </div>
                 </div>
             </section>
+            
         </div>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
